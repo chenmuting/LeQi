@@ -1,5 +1,17 @@
 # 更新日志
 
+## v1.0.19 build 50
+
+- 新增 `scripts/check_public_release_assets.py`，用于校验公开仓库 Release 资产完整性。
+- 新增 `scripts/check_build_integrity.py`，用于校验绿色版压缩包和安装包关键文件。
+- Release 工作流新增打包完整性检查和公开 Release 资产校验。
+- 启动自检中心增强：增加关键模块导入检查、播放后端检查、打包资源检查和 Release `version.json` 检查。
+- 歌手页、专辑页、歌单分类页歌曲表迁移到 `QTableView + QAbstractTableModel`。
+- 专辑页新增歌曲内搜索。
+- 专辑页新增“歌曲加入队列”和“专辑加入队列”。
+- 播放队列排序稳定性修复：拖拽、上移、下移、置顶、置底后保持当前播放歌曲索引正确。
+- 播放队列移除歌曲时保持当前播放索引正确。
+
 ## v1.0.18 build 49
 
 - 新增启动自检中心：检查配置文件、版本文件、目录权限、数据库、本地歌单 JSON、API 地址等关键启动依赖。
