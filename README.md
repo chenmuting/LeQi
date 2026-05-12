@@ -75,8 +75,10 @@
 - 支持在应用内检查版本更新。
 - 支持在关于页下载 Windows 安装包。
 - 支持在关于页下载 Windows 绿色版压缩包。
-- 支持打开下载目录。
-- 支持复制下载链接。
+- 支持下载前检测 Release 文件是否存在。
+- 支持显示 HTTP 错误原因。
+- 支持下载完成后校验文件大小。
+- 支持打开已下载文件、打开下载目录、复制文件路径。
 
 ### 数据管理
 
@@ -111,7 +113,7 @@
 
 请到 Releases 下载最新版本：
 
-- `LeQiSetup-1.0.12.exe`：Windows 安装包
+- `LeQiSetup-1.0.13.exe`：Windows 安装包
 - `LeQi-windows.zip`：Windows 绿色版
 - `version.json`：应用更新检查文件
 
@@ -124,9 +126,9 @@ https://github.com/chenmuting/LeQi/releases
 当前版本直链：
 
 ```text
-https://github.com/chenmuting/LeQi/releases/download/v1.0.12/LeQiSetup-1.0.12.exe
-https://github.com/chenmuting/LeQi/releases/download/v1.0.12/LeQi-windows.zip
-https://github.com/chenmuting/LeQi/releases/download/v1.0.12/version.json
+https://github.com/chenmuting/LeQi/releases/download/v1.0.13/LeQiSetup-1.0.13.exe
+https://github.com/chenmuting/LeQi/releases/download/v1.0.13/LeQi-windows.zip
+https://github.com/chenmuting/LeQi/releases/download/v1.0.13/version.json
 ```
 
 ---
@@ -134,8 +136,8 @@ https://github.com/chenmuting/LeQi/releases/download/v1.0.12/version.json
 ## 当前版本
 
 ```text
-version: 1.0.12
-build: 43
+version: 1.0.13
+build: 44
 channel: stable
 ```
 
@@ -148,7 +150,7 @@ channel: stable
 下载：
 
 ```text
-LeQiSetup-1.0.12.exe
+LeQiSetup-1.0.13.exe
 ```
 
 双击运行安装包，按安装向导完成安装。适合普通用户。
@@ -235,7 +237,9 @@ LeQi.exe
 - 点击「检查更新」。
 - 点击「下载 ZIP 版」。
 - 点击「下载安装包 EXE」。
+- 下载完成后可点击「打开已下载文件」。
 - 点击「打开下载目录」查看下载文件。
+- 点击「复制文件路径」复制本地下载路径。
 
 ---
 
