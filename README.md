@@ -66,9 +66,19 @@
 
 - 有效播放达到阈值后才记录历史。
 - 支持播放历史列表。
+- 支持分页加载播放历史，默认显示最近 50 条，可继续加载更多。
 - 支持累计播放次数统计。
 - 支持清空播放历史与所有播放次数。
 - 播放历史歌曲可加入指定本地歌单。
+
+### UI 与性能优化
+
+- 页面切换采用延迟刷新，降低切换瞬间卡顿。
+- 首页、歌单管理、收藏、播放历史、数据管理等页面采用后台加载。
+- 本地音乐扫描延迟到页面显示后执行。
+- 数据导入、导出、清理和日志读取在后台执行。
+- 表格批量渲染时暂停 UI 更新和信号，降低大列表刷新卡顿。
+- 本地歌单搜索支持 300ms 防抖。
 
 ### 下载管理与应用更新
 
@@ -113,7 +123,7 @@
 
 请到 Releases 下载最新版本：
 
-- `LeQiSetup-1.0.13.exe`：Windows 安装包
+- `LeQiSetup-1.0.14.exe`：Windows 安装包
 - `LeQi-windows.zip`：Windows 绿色版
 - `version.json`：应用更新检查文件
 
@@ -126,9 +136,9 @@ https://github.com/chenmuting/LeQi/releases
 当前版本直链：
 
 ```text
-https://github.com/chenmuting/LeQi/releases/download/v1.0.13/LeQiSetup-1.0.13.exe
-https://github.com/chenmuting/LeQi/releases/download/v1.0.13/LeQi-windows.zip
-https://github.com/chenmuting/LeQi/releases/download/v1.0.13/version.json
+https://github.com/chenmuting/LeQi/releases/download/v1.0.14/LeQiSetup-1.0.14.exe
+https://github.com/chenmuting/LeQi/releases/download/v1.0.14/LeQi-windows.zip
+https://github.com/chenmuting/LeQi/releases/download/v1.0.14/version.json
 ```
 
 ---
@@ -136,8 +146,8 @@ https://github.com/chenmuting/LeQi/releases/download/v1.0.13/version.json
 ## 当前版本
 
 ```text
-version: 1.0.13
-build: 44
+version: 1.0.14
+build: 45
 channel: stable
 ```
 
@@ -150,7 +160,7 @@ channel: stable
 下载：
 
 ```text
-LeQiSetup-1.0.13.exe
+LeQiSetup-1.0.14.exe
 ```
 
 双击运行安装包，按安装向导完成安装。适合普通用户。
@@ -218,6 +228,8 @@ LeQi.exe
 进入「播放历史」：
 
 - 查看最近播放记录。
+- 默认加载最近 50 条历史。
+- 点击「加载更多」继续追加显示。
 - 查看累计有效播放次数。
 - 将历史歌曲加入本地歌单。
 - 清空播放历史与所有播放次数。
@@ -229,6 +241,7 @@ LeQi.exe
 - 点击「导出用户数据」生成备份文件。
 - 点击「导入用户数据」恢复备份。
 - 默认开启导入前自动备份当前数据。
+- 导入、导出、清理、日志读取均在后台执行。
 
 ### 6. 检查更新与下载安装包
 
@@ -303,6 +316,10 @@ version.json
 ```text
 https://github.com/chenmuting/LeQi/releases/latest/download/version.json
 ```
+
+### 页面切换卡顿
+
+v1.0.14 起，首页、歌单、收藏、历史、数据管理等页面已改为后台加载。如果仍有卡顿，请检查本地歌单或播放历史数据量，并优先导出备份后清理历史数据。
 
 ### 播放失败或连续跳过
 
