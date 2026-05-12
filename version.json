@@ -1,21 +1,24 @@
 {
   "name": "乐栖",
   "english_name": "LeQi",
-  "version": "1.0.13",
-  "build": 44,
+  "version": "1.0.14",
+  "build": 45,
   "channel": "stable",
   "release_date": "2026-05-12",
   "release_page_url": "https://github.com/chenmuting/LeQi/releases",
-  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.13/LeQi-windows.zip",
+  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.14/LeQi-windows.zip",
   "assets": {
-    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.13/LeQi-windows.zip",
-    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.13/LeQiSetup-1.0.13.exe"
+    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.14/LeQi-windows.zip",
+    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.14/LeQiSetup-1.0.14.exe"
   },
   "changelog": [
-    "将应用内仓库链接和发布页面链接统一改为公开仓库 chenmuting/LeQi",
-    "公开仓库补充 LICENSE、CHANGELOG 和 SUPPORT 文档",
-    "应用内 Release 下载增强：下载前检测、HTTP 错误提示、文件大小校验",
-    "下载完成后支持打开文件、打开下载目录、复制文件路径",
-    "更新版本到 v1.0.13 build 44"
+    "新增统一 UI 异步加载与防卡顿框架",
+    "首页、歌单管理、收藏、播放历史、数据管理等页面改为后台加载",
+    "页面切换时延迟刷新，避免切换瞬间阻塞 UI",
+    "播放历史改为分页加载，默认显示最近 50 条，可加载更多",
+    "本地音乐启动扫描延迟到页面显示后执行",
+    "数据管理导入、导出、清理、日志读取全部后台执行",
+    "表格批量渲染优化，减少大列表卡顿",
+    "更新版本到 v1.0.14 build 45"
   ]
 }
