@@ -1,23 +1,24 @@
 {
   "name": "乐栖",
   "english_name": "LeQi",
-  "version": "1.0.18",
-  "build": 49,
+  "version": "1.0.19",
+  "build": 50,
   "channel": "stable",
   "release_date": "2026-05-12",
   "release_page_url": "https://github.com/chenmuting/LeQi/releases",
-  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.18/LeQi-windows.zip",
+  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.19/LeQi-windows.zip",
   "assets": {
-    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.18/LeQi-windows.zip",
-    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.18/LeQiSetup-1.0.18.exe"
+    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.19/LeQi-windows.zip",
+    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.19/LeQiSetup-1.0.19.exe"
   },
   "changelog": [
-    "新增启动自检中心，可检查配置、版本文件、目录权限、数据库、本地歌单 JSON 和 API 地址",
-    "新增专辑页，支持搜索专辑、查看专辑详情和专辑歌曲",
-    "搜索结果右键支持打开专辑",
-    "歌手歌曲右键支持打开专辑",
-    "播放队列支持拖拽排序，并提供上移、下移、置顶、置底操作",
-    "搜索页表格试点升级为 QTableView + QAbstractTableModel",
-    "更新版本到 v1.0.18 build 49"
+    "新增 Release 资产完整性检测脚本，校验公开仓库 zip、exe、version.json 是否齐全且链接正确",
+    "新增打包产物完整性检查脚本，校验绿色版压缩包和安装包关键文件",
+    "启动自检中心增强：增加关键模块导入、播放后端、打包资源和 Release version.json 检查",
+    "歌手页、专辑页、歌单分类页歌曲表迁移到 QTableView + QAbstractTableModel",
+    "专辑页新增歌曲内搜索、歌曲加入播放队列、专辑歌曲加入播放队列",
+    "播放队列排序稳定性修复：拖拽/移动后保持当前播放歌曲索引正确",
+    "Release 工作流增加打包完整性检查和公开 Release 资产校验",
+    "更新版本到 v1.0.19 build 50"
   ]
 }
