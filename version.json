@@ -1,26 +1,25 @@
 {
   "name": "乐栖",
   "english_name": "LeQi",
-  "version": "1.0.22",
-  "build": 53,
+  "version": "1.0.23",
+  "build": 54,
   "channel": "stable",
   "release_date": "2026-05-12",
   "release_page_url": "https://github.com/chenmuting/LeQi/releases",
-  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.22/LeQi-windows.zip",
+  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.23/LeQi-windows.zip",
   "assets": {
-    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.22/LeQi-windows.zip",
-    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.22/LeQiSetup-1.0.22.exe"
+    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.23/LeQi-windows.zip",
+    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.23/LeQiSetup-1.0.23.exe"
   },
   "changelog": [
-    "新增自动检查更新服务",
-    "应用启动完成后延迟自动检查更新",
-    "自动检查更新支持 24 小时限频",
-    "设置页新增自动检查更新开关、检查延迟和检查间隔",
-    "关于页优化为应用信息、版本更新、下载管理、目录入口、诊断信息和项目链接分区",
-    "关于页更新检查结果区分有新版本、当前最新版和检查失败",
-    "关于页下载状态显示已下载/未下载、下载进度、已下载文件路径",
-    "本地更新日志缺失不再作为错误提示",
-    "工作流校验脚本保持容错，避免 PyInstaller 目录结构和 GitHub 下载跳转造成误失败",
-    "更新版本到 v1.0.22 build 53"
+    "新增 UI 页面完整性检查脚本，提前发现页面字段未初始化风险",
+    "新增配置默认值检查脚本，确保新增配置字段具备默认值",
+    "新增关键页面导入检查脚本，降低打包后启动崩溃风险",
+    "关于页版本字段写入改为安全方法，修复更新源/自动检查字段缺失导致启动崩溃的问题",
+    "启动失败弹窗增加复制错误信息、打开日志目录和 last_crash_summary.txt",
+    "系统诊断页新增最近崩溃日志、复制崩溃日志、打开/清空 error.log",
+    "Release 工作流增加 UI integrity、config defaults、page import 三项轻量检查",
+    "工作流校验保持容错，避免 PyInstaller 目录结构和 GitHub 下载跳转造成误失败",
+    "更新版本到 v1.0.23 build 54"
   ]
 }
