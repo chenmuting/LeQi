@@ -1,24 +1,24 @@
 {
   "name": "乐栖",
   "english_name": "LeQi",
-  "version": "1.0.15",
-  "build": 46,
+  "version": "1.0.17",
+  "build": 48,
   "channel": "stable",
   "release_date": "2026-05-12",
   "release_page_url": "https://github.com/chenmuting/LeQi/releases",
-  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.15/LeQi-windows.zip",
+  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.17/LeQi-windows.zip",
   "assets": {
-    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.15/LeQi-windows.zip",
-    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.15/LeQiSetup-1.0.15.exe"
+    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.17/LeQi-windows.zip",
+    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.17/LeQiSetup-1.0.17.exe"
   },
   "changelog": [
-    "新增歌单分类页，调用 /playlist/catlist 获取分类并分页浏览 /top/playlist",
-    "搜索页支持分页加载更多，搜索结果追加去重",
-    "新增歌手页，支持搜索歌手与分页加载歌手全部歌曲",
-    "搜索结果右键支持查看歌手全部歌曲",
-    "本地歌单新增分类、标签和说明字段，旧数据自动兼容默认分类",
-    "歌单管理页支持按本地分类筛选，并可编辑分类/标签/说明",
-    "侧边栏改为分组显示：播放、资料库、工具、设置",
-    "更新版本到 v1.0.15 build 46"
+    "新增发现页，聚合搜索历史、热门分类、歌手入口和 API 能力检测",
+    "搜索页新增最近搜索历史和一键重新搜索",
+    "搜索结果支持已加载歌曲批量加入指定本地歌单",
+    "歌手页新增歌手详情、简介展示和已加载歌曲内搜索",
+    "歌单分类页按 category 分组显示分类标签",
+    "新增 API 能力检测：搜索、播放链接、歌单分类、分类歌单、歌手歌曲等",
+    "保留启动闪退修复：新增功能不在启动阶段主动请求网络接口",
+    "更新版本到 v1.0.17 build 48"
   ]
 }
