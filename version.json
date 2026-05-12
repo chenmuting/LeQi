@@ -1,25 +1,26 @@
 {
   "name": "乐栖",
   "english_name": "LeQi",
-  "version": "1.0.21",
-  "build": 52,
+  "version": "1.0.22",
+  "build": 53,
   "channel": "stable",
   "release_date": "2026-05-12",
   "release_page_url": "https://github.com/chenmuting/LeQi/releases",
-  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.21/LeQi-windows.zip",
+  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.22/LeQi-windows.zip",
   "assets": {
-    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.21/LeQi-windows.zip",
-    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.21/LeQiSetup-1.0.21.exe"
+    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.22/LeQi-windows.zip",
+    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.22/LeQiSetup-1.0.22.exe"
   },
   "changelog": [
-    "新增统一表格列宽记忆，支持 QSettings 持久化保存列宽",
-    "核心表格支持右键复制单元格、复制整行、复制选中区域",
-    "歌单分类页新增当前已加载歌单搜索与快捷分类按钮",
-    "专辑页新增专辑封面显示",
-    "歌手页新增歌手专辑列表，双击专辑可打开专辑页",
-    "播放队列新增撤销排序与随机打乱",
-    "启动自检报告新增一键复制精简报告",
-    "数据管理页新增修复本地数据功能",
-    "更新版本到 v1.0.21 build 52"
+    "新增自动检查更新服务",
+    "应用启动完成后延迟自动检查更新",
+    "自动检查更新支持 24 小时限频",
+    "设置页新增自动检查更新开关、检查延迟和检查间隔",
+    "关于页优化为应用信息、版本更新、下载管理、目录入口、诊断信息和项目链接分区",
+    "关于页更新检查结果区分有新版本、当前最新版和检查失败",
+    "关于页下载状态显示已下载/未下载、下载进度、已下载文件路径",
+    "本地更新日志缺失不再作为错误提示",
+    "工作流校验脚本保持容错，避免 PyInstaller 目录结构和 GitHub 下载跳转造成误失败",
+    "更新版本到 v1.0.22 build 53"
   ]
 }
