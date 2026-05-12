@@ -1,6 +1,6 @@
 # 乐栖 LeQi
 
-乐栖 LeQi 是一个面向 Windows 桌面的音乐播放器，支持在线音乐搜索、发现页、歌单分类、歌手歌曲、专辑页、播放队列、本地歌单、用户歌单、收藏、播放历史统计、主题切换、数据备份与应用内更新下载。
+乐栖 LeQi 是一个面向 Windows 桌面的音乐播放器，支持在线音乐搜索、发现页、歌单分类、歌手歌曲、专辑页、播放队列、本地歌单、用户歌单、收藏、播放历史统计、主题切换、启动自检、发布校验、数据备份与应用内更新下载。
 
 本仓库是 **乐栖 LeQi 的公开发布仓库**，用于提供安装包、绿色版压缩包和更新检查文件。源码仓库为私有仓库，不在此处公开。
 
@@ -13,6 +13,7 @@
 - 支持通过关键词搜索歌曲、歌手、专辑。
 - 支持搜索结果分页加载更多。
 - 支持搜索页歌曲表使用 `QTableView + QAbstractTableModel` 试点优化。
+- 支持歌手页、专辑页、歌单分类页歌曲表使用模型表格。
 - 支持双击搜索结果直接播放。
 - 支持播放链接获取失败提示。
 - 支持播放失败自动停止当前播放后端，避免界面卡顿。
@@ -45,7 +46,10 @@
 - 支持搜索专辑。
 - 支持查看专辑详情。
 - 支持加载专辑歌曲。
+- 支持专辑歌曲内搜索。
 - 支持播放、收藏、加入指定本地歌单。
+- 支持单首歌曲加入播放队列。
+- 支持整张专辑歌曲加入播放队列。
 - 支持将整张专辑歌曲批量加入本地歌单。
 - 支持从搜索结果右键打开专辑。
 - 支持从歌手歌曲右键打开专辑。
@@ -75,6 +79,8 @@
 - 清空播放队列。
 - 支持拖拽排序。
 - 支持上移、下移、置顶、置底。
+- 拖拽或移动后保持当前播放歌曲索引稳定。
+- 移除当前播放歌曲前面的歌曲后，当前播放索引会自动校正。
 - 将当前播放队列保存为本地歌单，并保留当前排序。
 - 将队列中的单首歌曲加入指定本地歌单。
 
@@ -124,7 +130,7 @@
 - 本地音乐扫描延迟到页面显示后执行。
 - 数据导入、导出、清理和日志读取在后台执行。
 - 表格批量渲染时暂停 UI 更新和信号，降低大列表刷新卡顿。
-- 搜索页表格试点升级为 `QTableView + QAbstractTableModel`。
+- 搜索页、歌手页、专辑页、歌单分类页歌曲表已迁移或试点为 `QTableView + QAbstractTableModel`。
 - 本地歌单搜索支持 300ms 防抖。
 - v1.0.16 起修复启动阶段高概率闪退问题。
 - 新增功能不在启动阶段主动请求网络接口。
@@ -132,8 +138,20 @@
 ### 启动自检中心
 
 - 检查配置文件、版本文件、数据目录、日志目录、应用图标、QSS 样式、SQLite 数据库、本地歌单 JSON 和 API 地址配置。
+- 检查关键 Python 模块导入，例如 `api.album_api`、`services.album_service`、`ui.pages.album_page`、`ui.models.song_table_model`。
+- 检查播放后端模块。
+- 检查打包资源是否存在。
+- 检查 Release `version.json` 是否包含必要下载信息。
 - 支持导出启动自检报告到 `logs/startup_check_<timestamp>.json`。
 - 用于定位启动失败、目录不可写、配置缺失和数据文件损坏等问题。
+
+### Release 与打包校验
+
+- 新增公开 Release 资产完整性检测脚本。
+- 新增打包产物完整性检测脚本。
+- GitHub Actions 工作流会在发布前检查本地打包产物。
+- GitHub Actions 工作流会在发布后检查公开仓库 Release 资产。
+- 用于减少 Release 缺文件、下载链接 404、`version.json` 指向旧版本等问题。
 
 ### 下载管理与应用更新
 
@@ -180,7 +198,7 @@
 
 请到 Releases 下载最新版本：
 
-- `LeQiSetup-1.0.18.exe`：Windows 安装包
+- `LeQiSetup-1.0.19.exe`：Windows 安装包
 - `LeQi-windows.zip`：Windows 绿色版
 - `version.json`：应用更新检查文件
 
@@ -193,9 +211,9 @@ https://github.com/chenmuting/LeQi/releases
 当前版本直链：
 
 ```text
-https://github.com/chenmuting/LeQi/releases/download/v1.0.18/LeQiSetup-1.0.18.exe
-https://github.com/chenmuting/LeQi/releases/download/v1.0.18/LeQi-windows.zip
-https://github.com/chenmuting/LeQi/releases/download/v1.0.18/version.json
+https://github.com/chenmuting/LeQi/releases/download/v1.0.19/LeQiSetup-1.0.19.exe
+https://github.com/chenmuting/LeQi/releases/download/v1.0.19/LeQi-windows.zip
+https://github.com/chenmuting/LeQi/releases/download/v1.0.19/version.json
 ```
 
 ---
@@ -203,8 +221,8 @@ https://github.com/chenmuting/LeQi/releases/download/v1.0.18/version.json
 ## 当前版本
 
 ```text
-version: 1.0.18
-build: 49
+version: 1.0.19
+build: 50
 channel: stable
 ```
 
@@ -217,7 +235,7 @@ channel: stable
 下载：
 
 ```text
-LeQiSetup-1.0.18.exe
+LeQiSetup-1.0.19.exe
 ```
 
 双击运行安装包，按安装向导完成安装。适合普通用户。
@@ -279,7 +297,9 @@ LeQi.exe
 
 - 输入专辑名或歌手名搜索。
 - 双击专辑加载专辑歌曲。
+- 可在专辑歌曲中搜索。
 - 可播放专辑歌曲。
+- 可将单首歌曲或整张专辑加入播放队列。
 - 可将单首歌曲或整张专辑加入本地歌单。
 
 ### 5. 浏览歌单分类
@@ -299,6 +319,7 @@ LeQi.exe
 - 可播放、移除或清空队列歌曲。
 - 可拖拽调整播放顺序。
 - 可使用上移、下移、置顶、置底调整顺序。
+- 排序后会保持当前播放歌曲索引稳定。
 - 保存为本地歌单时会保留当前顺序。
 
 ### 7. 加入本地歌单
@@ -352,7 +373,7 @@ LeQi.exe
 进入「系统诊断」页面：
 
 - 点击「启动自检」。
-- 查看配置、版本、目录权限、数据库、本地歌单 JSON 和 API 地址检查结果。
+- 查看配置、版本、目录权限、数据库、本地歌单 JSON、API 地址、关键模块、播放后端、打包资源和 Release `version.json` 检查结果。
 - 点击「导出启动自检报告」生成 JSON 报告。
 
 ### 11. 导出 / 导入用户数据
@@ -374,6 +395,43 @@ LeQi.exe
 - 下载完成后可点击「打开已下载文件」。
 - 点击「打开下载目录」查看下载文件。
 - 点击「复制文件路径」复制本地下载路径。
+
+---
+
+## 发布与校验脚本
+
+### 检查公开 Release 资产
+
+```bash
+python scripts/check_public_release_assets.py --repo chenmuting/LeQi --tag v1.0.19 --build 50
+```
+
+检查内容：
+
+```text
+LeQi-windows.zip
+LeQiSetup-1.0.19.exe
+version.json
+version.json.version
+version.json.build
+version.json.assets.zip
+version.json.assets.exe
+下载链接 HTTP 状态
+```
+
+### 检查本地打包产物
+
+```bash
+python scripts/check_build_integrity.py --version 1.0.19
+```
+
+检查内容：
+
+```text
+release/LeQi-windows.zip
+release/LeQiSetup-1.0.19.exe
+绿色版压缩包内关键文件和目录
+```
 
 ---
 
@@ -424,6 +482,12 @@ logs/startup_check_*.json    启动自检报告
 LeQiSetup-<version>.exe
 LeQi-windows.zip
 version.json
+```
+
+也可以运行：
+
+```bash
+python scripts/check_public_release_assets.py --repo chenmuting/LeQi --tag v1.0.19 --build 50
 ```
 
 ### 无法检查更新
