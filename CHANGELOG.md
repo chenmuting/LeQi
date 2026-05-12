@@ -1,5 +1,16 @@
 # 更新日志
 
+## v1.0.23 build 54
+
+- 新增 `scripts/check_ui_integrity.py`，用于检查关键页面字段、方法和高风险 UI 字典 key。
+- 新增 `scripts/check_config_defaults.py`，用于检查新增配置项是否存在默认值。
+- 新增 `scripts/check_page_construction.py`，用于检查关键页面模块导入是否正常。
+- 关于页版本字段写入改为 `_set_version_label()`，修复 `KeyError: '更新源'` / `KeyError: '自动检查'` 这类字段未初始化问题。
+- 启动失败弹窗增强：支持复制错误信息、打开日志目录，并生成 `logs/last_crash_summary.txt`。
+- 系统诊断页新增最近崩溃日志入口：查看、复制、打开、清空 `logs/error.log`。
+- Release 工作流接入 UI integrity、config defaults、page import 三项轻量检查。
+- 保持工作流打包检查容错，不再因为 PyInstaller 源码目录未外置或 GitHub 下载重定向/BOM 行为导致误失败。
+
 ## v1.0.22 build 53
 
 - 新增自动检查更新服务，启动完成后延迟检查远程 `version.json`。
