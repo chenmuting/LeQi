@@ -1,27 +1,26 @@
 {
   "name": "乐栖",
   "english_name": "LeQi",
-  "version": "1.0.25",
-  "build": 56,
+  "version": "1.0.28",
+  "build": 59,
   "channel": "stable",
   "release_date": "2026-05-12",
   "release_page_url": "https://github.com/chenmuting/LeQi/releases",
-  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.25/LeQi-windows.zip",
+  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.28/LeQi-windows.zip",
   "assets": {
-    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.25/LeQi-windows.zip",
-    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.25/LeQiSetup-1.0.25.exe"
+    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.28/LeQi-windows.zip",
+    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.28/LeQiSetup-1.0.28.exe"
   },
   "changelog": [
-    "新增首次启动欢迎页，提供搜索、歌单分类、设置等快速入口",
-    "新增全局快捷键说明，支持 F1 查看快捷键",
-    "首页优化为快捷仪表盘，增加发现、歌单分类、歌手、专辑、数据管理、检查更新等入口",
-    "设置页新增启动欢迎页开关",
-    "新增空状态组件，统一空列表说明样式",
-    "Toast 状态提示支持 info / success / warning / error 类型样式",
-    "修复安装包启动闪退风险：main.py 在导入应用模块前先归一化工作目录",
-    "修复安装包启动闪退风险：配置读取兼容安装目录与 _internal/config",
-    "修复安装包快捷方式工作目录，桌面/开始菜单/安装后启动均使用 {app} 作为 WorkingDir",
-    "更新安装包脚本仓库链接为公开仓库 chenmuting/LeQi",
-    "更新版本到 v1.0.25 build 56"
+    "v1.0.26：Release 下载正式解耦，新增 ReleaseAssetService、ReleaseDownloadWorker、ReleaseDownloadCard",
+    "v1.0.26：Release 下载支持取消下载、清理 .part 残留和错误日志 logs/release_download_error.log",
+    "v1.0.26：关于页下载区域改为独立卡片，下载进度全部通过 Qt signal 回到主线程更新",
+    "v1.0.27：数据管理拆分为备份、清理、修复三个 service，并保留 DataManagementService 门面兼容旧 UI",
+    "v1.0.27：播放控制新增队列、失败恢复、事件构造、状态快照管理模块，降低 PlayerController 后续维护压力",
+    "v1.0.28：新增 ConfigSchema，应用启动时自动补全新增配置默认值",
+    "v1.0.28：新增设置页配置卡片模块雏形，准备按 API、播放、更新、界面、存储、新手引导拆分",
+    "新增架构边界检查脚本、配置 Schema 检查脚本和 Release 下载 UI 检查脚本",
+    "系统诊断新增 Release 下载环境检查",
+    "更新版本到 v1.0.28 build 59"
   ]
 }
