@@ -5,8 +5,8 @@
 ## 当前版本
 
 ```text
-version: 1.0.24
-build: 55
+version: 1.0.25
+build: 56
 channel: stable
 ```
 
@@ -21,31 +21,32 @@ https://github.com/chenmuting/LeQi/releases
 当前版本直链：
 
 ```text
-https://github.com/chenmuting/LeQi/releases/download/v1.0.24/LeQiSetup-1.0.24.exe
-https://github.com/chenmuting/LeQi/releases/download/v1.0.24/LeQi-windows.zip
-https://github.com/chenmuting/LeQi/releases/download/v1.0.24/version.json
+https://github.com/chenmuting/LeQi/releases/download/v1.0.25/LeQiSetup-1.0.25.exe
+https://github.com/chenmuting/LeQi/releases/download/v1.0.25/LeQi-windows.zip
+https://github.com/chenmuting/LeQi/releases/download/v1.0.25/version.json
 ```
 
 文件说明：
 
 ```text
-LeQiSetup-1.0.24.exe   Windows 安装包
+LeQiSetup-1.0.25.exe   Windows 安装包
 LeQi-windows.zip       Windows 绿色版
 version.json           应用更新检查文件
 ```
 
-## v1.0.24 build 55 更新重点
+## v1.0.25 build 56 更新重点
 
-- 新增播放失败原因分类：无播放地址、API 空 URL、网络超时、播放后端加载失败、本地文件不存在、格式不支持、连续失败达到上限。
-- 播放事件日志增强：记录失败原因、失败阶段、队列位置、播放后端、歌曲名、歌手、专辑、播放进度和时长。
-- 新增播放 URL 预取服务，当前歌曲开始播放后后台预取下一首在线歌曲 URL。
-- 播放失败后立即释放当前媒体资源，降低 QMediaPlayer / VLC 卡顿或资源占用风险。
-- 播放队列新增状态列：待播放、待准备、正在准备、正在播放、播放完成、已失败、已跳过、已停止。
-- 播放队列右键新增“重试播放”和“复制失败原因”。
-- 播放队列新增“移除失败”按钮，可批量移除失败歌曲。
-- 播放事件日志支持按播放成功、播放失败、跳过、停止、连续失败、预取等类别筛选。
-- 播放事件日志支持 TXT / JSON 导出。
-- 系统诊断页新增播放后端健康检查。
+- 新增首次启动欢迎页，提供搜索、歌单分类、设置等快速入口。
+- 新增全局快捷键说明，支持 F1 查看快捷键。
+- 新增全局快捷键：空格播放 / 暂停、Ctrl+F 搜索、Ctrl+L 歌单、Ctrl+H 历史、Ctrl+, 设置、Ctrl+Q 队列、F5 刷新。
+- 首页优化为快捷仪表盘，增加发现、歌单分类、歌手、专辑、数据管理、检查更新等入口。
+- 设置页新增“启动时显示欢迎页”开关。
+- 新增空状态组件，用于统一空列表说明样式。
+- Toast 状态提示支持 info / success / warning / error 类型样式。
+- 修复安装包启动闪退风险：main.py 在导入应用模块前先归一化工作目录。
+- 修复安装包启动闪退风险：配置读取兼容安装目录与 `_internal/config`。
+- 修复安装包快捷方式工作目录：开始菜单、桌面图标和安装后启动均使用 `{app}` 作为 WorkingDir。
+- 安装包脚本仓库链接更新为公开仓库 `chenmuting/LeQi`。
 
 ## 主要功能
 
@@ -57,6 +58,20 @@ version.json           应用更新检查文件
 - 播放失败提示与连续失败治理。
 - 播放失败原因分类与事件日志记录。
 - 当前歌曲播放后后台预取下一首在线歌曲 URL。
+
+### 新手引导与快捷键
+
+- 首次启动显示欢迎页。
+- 欢迎页支持快速进入搜索、歌单分类和设置。
+- 设置页可控制是否启动时显示欢迎页。
+- F1 可打开快捷键说明。
+- 支持空格播放 / 暂停、Ctrl+F 搜索、Ctrl+L 歌单、Ctrl+H 历史、Ctrl+, 设置、Ctrl+Q 队列、F5 刷新。
+
+### 首页仪表盘
+
+- 首页展示 API 地址、播放内核、收藏数量、历史数量、总播放次数、缓存歌单数量。
+- 首页提供搜索、发现、歌单分类、歌手、专辑、本地音乐、本地歌单、数据管理、系统诊断和检查更新快捷入口。
+- 首页展示最近播放和常听歌曲 Top 10。
 
 ### 发现页
 
@@ -114,6 +129,14 @@ version.json           应用更新检查文件
 - 关于页显示 ZIP / EXE 下载状态和下载进度。
 - 关于页版本字段使用安全写入，降低字段缺失导致启动崩溃风险。
 
+### 安装包启动稳定性
+
+- 安装包启动前先归一化工作目录，避免从开始菜单或桌面快捷方式启动时找不到配置。
+- 配置读取兼容安装目录 `config/app_config.json` 与 `_internal/config/app_config.json`。
+- 资源查找兼容安装目录与 `_internal/assets`。
+- 安装包快捷方式设置 WorkingDir 为 `{app}`。
+- 安装包脚本仓库链接指向公开仓库 `chenmuting/LeQi`。
+
 ### 启动稳定性与诊断
 
 - 启动失败弹窗支持复制错误信息。
@@ -122,7 +145,7 @@ version.json           应用更新检查文件
 - 系统诊断页支持查看最近崩溃日志。
 - 系统诊断页支持复制、打开、清空 `logs/error.log`。
 - 系统诊断页支持播放后端健康检查。
-- Release 前执行 UI 完整性检查、配置默认值检查和页面导入检查。
+- Release 前执行 UI 完整性检查、配置默认值检查、页面导入检查和安装包运行时检查。
 
 ### 数据管理
 
@@ -139,9 +162,58 @@ version.json           应用更新检查文件
 - 搜索页、歌手页、专辑页、歌单分类页歌曲表使用或试点 `QTableView + QAbstractTableModel`。
 - 核心表格支持列宽记忆。
 - 核心表格支持右键复制单元格、复制整行、复制选中区域。
+- Toast 支持不同状态样式。
 - v1.0.16 起修复启动阶段高概率闪退问题。
 
 ## 基础使用说明
+
+### 首次启动欢迎页
+
+首次启动会显示欢迎页，可选择：
+
+```text
+开始搜索
+浏览歌单分类
+打开设置
+不再显示
+```
+
+可在设置页调整：
+
+```text
+启动时显示欢迎页
+```
+
+### 快捷键
+
+```text
+空格：播放 / 暂停
+Ctrl + F：搜索
+Ctrl + L：本地歌单
+Ctrl + H：播放历史
+Ctrl + ,：设置
+Ctrl + Q：播放队列
+F5：刷新当前页
+F1：快捷键说明
+```
+
+### 安装包启动失败排查
+
+若安装包启动失败，请查看：
+
+```text
+logs/error.log
+logs/last_crash_summary.txt
+```
+
+v1.0.25 已修复以下高风险点：
+
+```text
+快捷方式工作目录不正确
+启动前未切换到安装目录
+配置文件位于 _internal/config 时读取失败
+资源文件位于 _internal/assets 时读取失败
+```
 
 ### 播放失败处理
 
@@ -189,16 +261,6 @@ TXT
 JSON
 ```
 
-### 播放后端健康检查
-
-进入：
-
-```text
-系统诊断 -> 全面诊断
-```
-
-可查看当前播放内核、QMediaPlayer、VLC 和失败治理配置状态。
-
 ### 自动检查更新
 
 1. 打开应用。
@@ -215,34 +277,15 @@ JSON
 4. 点击「下载 ZIP 版」或「下载安装包 EXE」。
 5. 下载完成后可打开文件、打开下载目录或复制文件路径。
 
-### 查看最近崩溃日志
-
-进入：
-
-```text
-系统诊断 -> 最近崩溃日志
-```
-
-可查看、复制、打开或清空：
-
-```text
-logs/error.log
-```
-
-启动失败时还会生成：
-
-```text
-logs/last_crash_summary.txt
-```
-
 ## 发布与校验脚本
 
 ```bash
 python scripts/check_ui_integrity.py
 python scripts/check_config_defaults.py
 python scripts/check_page_construction.py
-python scripts/check_public_release_assets.py --repo chenmuting/LeQi --tag v1.0.24 --build 55
-python scripts/check_build_integrity.py --version 1.0.24
+python scripts/check_installer_runtime.py
+python scripts/check_public_release_assets.py --repo chenmuting/LeQi --tag v1.0.25 --build 56
+python scripts/check_build_integrity.py --version 1.0.25
 ```
 
 ## 更新检查
