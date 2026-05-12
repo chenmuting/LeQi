@@ -1,0 +1,22 @@
+{
+  "name": "乐栖",
+  "english_name": "LeQi",
+  "version": "1.0.12",
+  "build": 43,
+  "channel": "stable",
+  "release_date": "2026-05-12",
+  "release_page_url": "https://github.com/chenmuting/LeQi/releases",
+  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.12/LeQi-windows.zip",
+  "assets": {
+    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.12/LeQi-windows.zip",
+    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.12/LeQiSetup-1.0.12.exe"
+  },
+  "changelog": [
+    "私人源码仓库打包，公开发布仓库发布安装包",
+    "Release 资产上传目标迁移到 chenmuting/LeQi",
+    "应用内更新检查迁移到公开仓库 Release 的 version.json",
+    "应用内 ZIP / EXE 下载地址迁移到公开发布仓库",
+    "工作流使用 PUBLIC_RELEASE_TOKEN 跨仓库发布 Release",
+    "version.json 作为 Release asset 一并上传"
+  ]
+}
