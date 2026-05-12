@@ -1,0 +1,17 @@
+# Release assets are uploaded through GitHub Releases.
+# Do not commit generated installers or build outputs to the repository.
+
+*.exe
+*.zip
+*.msi
+*.7z
+*.rar
+
+release/
+dist/
+build/
+_internal/
+
+*.log
+.DS_Store
+Thumbs.db
