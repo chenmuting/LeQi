@@ -5,8 +5,8 @@
 ## 当前版本
 
 ```text
-version: 1.0.21
-build: 52
+version: 1.0.22
+build: 53
 channel: stable
 ```
 
@@ -21,31 +21,30 @@ https://github.com/chenmuting/LeQi/releases
 当前版本直链：
 
 ```text
-https://github.com/chenmuting/LeQi/releases/download/v1.0.21/LeQiSetup-1.0.21.exe
-https://github.com/chenmuting/LeQi/releases/download/v1.0.21/LeQi-windows.zip
-https://github.com/chenmuting/LeQi/releases/download/v1.0.21/version.json
+https://github.com/chenmuting/LeQi/releases/download/v1.0.22/LeQiSetup-1.0.22.exe
+https://github.com/chenmuting/LeQi/releases/download/v1.0.22/LeQi-windows.zip
+https://github.com/chenmuting/LeQi/releases/download/v1.0.22/version.json
 ```
 
 文件说明：
 
 ```text
-LeQiSetup-1.0.21.exe   Windows 安装包
+LeQiSetup-1.0.22.exe   Windows 安装包
 LeQi-windows.zip       Windows 绿色版
 version.json           应用更新检查文件
 ```
 
-## v1.0.21 build 52 更新重点
+## v1.0.22 build 53 更新重点
 
-- 新增统一表格列宽记忆，核心表格列宽使用 QSettings 持久化保存。
-- 核心表格新增右键复制能力：复制单元格、复制整行、复制选中区域。
-- 歌单分类页新增“搜索当前已加载歌单”输入框。
-- 歌单分类页新增快捷分类按钮：全部、华语、流行、摇滚、民谣、电子、轻音乐、学习、工作、睡前。
-- 专辑页新增专辑封面显示，加载专辑详情时异步下载封面。
-- 歌手页新增歌手专辑列表，双击专辑可打开专辑页。
-- 播放队列新增撤销排序，保留最近 10 次排序快照。
-- 播放队列新增随机打乱。
-- 启动自检报告新增“一键复制精简报告”。
-- 数据管理页新增“修复本地数据”，可修复本地歌单 JSON、常用目录和 SQLite 基础状态。
+- 新增自动检查更新服务，启动完成后延迟检查远程 `version.json`。
+- 自动检查更新支持限频，默认 24 小时内只自动检查一次。
+- 自动检查模式下：发现新版本时提示；当前已是最新版时静默；检查失败只记录日志。
+- 设置页新增自动检查更新开关、启动后检查延迟、自动检查间隔、最新版静默选项。
+- 关于页优化为卡片式信息中心：应用信息、版本更新、Release 下载、项目链接、运行环境、诊断信息、更新日志。
+- 关于页更新检查结果区分“发现新版本 / 当前已是最新版 / 检查失败”。
+- 关于页 Release 下载状态优化：显示 ZIP / EXE 是否已下载、下载进度、已下载文件路径。
+- 本地 `CHANGELOG.md` 缺失不再作为错误提示；关于页优先显示 `version.json` 中的 changelog。
+- 工作流校验脚本保持容错，避免 PyInstaller 源码目录未外置或 GitHub 下载重定向/BOM 行为导致误失败。
 
 ## 主要功能
 
@@ -94,6 +93,14 @@ version.json           应用更新检查文件
 - 随机打乱。
 - 保存为本地歌单时保留当前顺序。
 
+### 自动更新与关于页
+
+- 启动后延迟自动检查更新。
+- 24 小时内只自动检查一次。
+- 自动检查失败只写日志，不弹错误。
+- 关于页展示应用信息、版本更新、Release 下载、项目链接、运行环境、诊断信息和更新日志。
+- 关于页显示 ZIP / EXE 下载状态和下载进度。
+
 ### 数据管理
 
 - 导出 / 导入用户数据。
@@ -110,13 +117,32 @@ version.json           应用更新检查文件
 - 核心表格支持右键复制单元格、复制整行、复制选中区域。
 - v1.0.16 起修复启动阶段高概率闪退问题。
 
-### 启动自检中心
-
-系统诊断页支持启动自检，可检查配置文件、版本文件、数据目录、日志目录、应用图标、QSS 样式、SQLite 数据库、本地歌单 JSON、API 地址配置、关键 Python 模块导入、播放后端模块、打包资源和 Release version.json。
-
-支持导出报告，也支持一键复制精简报告。
-
 ## 基础使用说明
+
+### 自动检查更新
+
+1. 打开应用。
+2. 应用启动完成后会按设置延迟自动检查更新。
+3. 有新版本时会显示底部通知。
+4. 当前已是最新版时默认静默。
+5. 检查失败只写入日志，不影响启动。
+
+可在设置页调整：
+
+```text
+启动后自动检查更新
+启动后检查延迟
+自动检查间隔
+自动检查时最新版不提示
+```
+
+### 关于页检查更新与下载
+
+1. 进入「关于」页面。
+2. 点击「检查更新」。
+3. 查看当前版本、远程版本、更新状态和远程更新日志。
+4. 点击「下载 ZIP 版」或「下载安装包 EXE」。
+5. 下载完成后可打开文件、打开下载目录或复制文件路径。
 
 ### 浏览歌单分类
 
@@ -145,8 +171,8 @@ version.json           应用更新检查文件
 ## 发布与校验脚本
 
 ```bash
-python scripts/check_public_release_assets.py --repo chenmuting/LeQi --tag v1.0.21 --build 52
-python scripts/check_build_integrity.py --version 1.0.21
+python scripts/check_public_release_assets.py --repo chenmuting/LeQi --tag v1.0.22 --build 53
+python scripts/check_build_integrity.py --version 1.0.22
 ```
 
 ## 更新检查
