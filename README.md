@@ -5,8 +5,8 @@
 ## 当前版本
 
 ```text
-version: 1.0.23
-build: 54
+version: 1.0.24
+build: 55
 channel: stable
 ```
 
@@ -21,29 +21,31 @@ https://github.com/chenmuting/LeQi/releases
 当前版本直链：
 
 ```text
-https://github.com/chenmuting/LeQi/releases/download/v1.0.23/LeQiSetup-1.0.23.exe
-https://github.com/chenmuting/LeQi/releases/download/v1.0.23/LeQi-windows.zip
-https://github.com/chenmuting/LeQi/releases/download/v1.0.23/version.json
+https://github.com/chenmuting/LeQi/releases/download/v1.0.24/LeQiSetup-1.0.24.exe
+https://github.com/chenmuting/LeQi/releases/download/v1.0.24/LeQi-windows.zip
+https://github.com/chenmuting/LeQi/releases/download/v1.0.24/version.json
 ```
 
 文件说明：
 
 ```text
-LeQiSetup-1.0.23.exe   Windows 安装包
+LeQiSetup-1.0.24.exe   Windows 安装包
 LeQi-windows.zip       Windows 绿色版
 version.json           应用更新检查文件
 ```
 
-## v1.0.23 build 54 更新重点
+## v1.0.24 build 55 更新重点
 
-- 新增 UI 页面完整性检查脚本，提前发现页面字段未初始化风险。
-- 新增配置默认值检查脚本，确保新增配置字段具备默认值。
-- 新增关键页面导入检查脚本，降低打包后启动崩溃风险。
-- 关于页版本字段写入改为安全方法，修复更新源 / 自动检查字段缺失导致启动崩溃的问题。
-- 启动失败弹窗增加复制错误信息、打开日志目录和 `last_crash_summary.txt`。
-- 系统诊断页新增最近崩溃日志、复制崩溃日志、打开 / 清空 `error.log`。
-- Release 工作流增加 UI integrity、config defaults、page import 三项轻量检查。
-- 工作流校验保持容错，避免 PyInstaller 目录结构和 GitHub 下载跳转造成误失败。
+- 新增播放失败原因分类：无播放地址、API 空 URL、网络超时、播放后端加载失败、本地文件不存在、格式不支持、连续失败达到上限。
+- 播放事件日志增强：记录失败原因、失败阶段、队列位置、播放后端、歌曲名、歌手、专辑、播放进度和时长。
+- 新增播放 URL 预取服务，当前歌曲开始播放后后台预取下一首在线歌曲 URL。
+- 播放失败后立即释放当前媒体资源，降低 QMediaPlayer / VLC 卡顿或资源占用风险。
+- 播放队列新增状态列：待播放、待准备、正在准备、正在播放、播放完成、已失败、已跳过、已停止。
+- 播放队列右键新增“重试播放”和“复制失败原因”。
+- 播放队列新增“移除失败”按钮，可批量移除失败歌曲。
+- 播放事件日志支持按播放成功、播放失败、跳过、停止、连续失败、预取等类别筛选。
+- 播放事件日志支持 TXT / JSON 导出。
+- 系统诊断页新增播放后端健康检查。
 
 ## 主要功能
 
@@ -53,6 +55,8 @@ version.json           应用更新检查文件
 - 搜索结果分页加载更多。
 - 双击搜索结果直接播放。
 - 播放失败提示与连续失败治理。
+- 播放失败原因分类与事件日志记录。
+- 当前歌曲播放后后台预取下一首在线歌曲 URL。
 
 ### 发现页
 
@@ -91,6 +95,15 @@ version.json           应用更新检查文件
 - 撤销排序。
 - 随机打乱。
 - 保存为本地歌单时保留当前顺序。
+- 显示队列歌曲状态。
+- 失败歌曲支持重试播放、移除失败歌曲、复制失败原因。
+
+### 播放事件日志
+
+- 记录播放成功、播放失败、跳过、停止、连续失败、预取等事件。
+- 记录失败原因、失败阶段、播放后端、队列位置、歌曲名、歌手和专辑。
+- 支持筛选播放事件。
+- 支持导出 TXT / JSON。
 
 ### 自动更新与关于页
 
@@ -108,6 +121,7 @@ version.json           应用更新检查文件
 - 启动失败会生成 `logs/last_crash_summary.txt`。
 - 系统诊断页支持查看最近崩溃日志。
 - 系统诊断页支持复制、打开、清空 `logs/error.log`。
+- 系统诊断页支持播放后端健康检查。
 - Release 前执行 UI 完整性检查、配置默认值检查和页面导入检查。
 
 ### 数据管理
@@ -116,6 +130,7 @@ version.json           应用更新检查文件
 - 导入前自动备份当前数据。
 - 清空缓存、日志、下载目录、收藏、本地歌单、用户歌单缓存、播放历史和播放次数。
 - 修复本地数据：创建缺失目录、检查 / 修复本地歌单 JSON、隔离损坏 JSON、执行 SQLite integrity_check 和 VACUUM。
+- 查看、筛选、清空、导出播放事件日志。
 
 ### UI、性能与稳定性
 
@@ -127,6 +142,62 @@ version.json           应用更新检查文件
 - v1.0.16 起修复启动阶段高概率闪退问题。
 
 ## 基础使用说明
+
+### 播放失败处理
+
+播放失败时，应用会：
+
+```text
+停止并释放当前媒体资源
+记录失败原因和失败阶段
+将播放队列歌曲标记为已失败 / 已跳过
+必要时自动跳过下一首
+达到连续失败上限时停止队列
+```
+
+在播放队列中可对失败歌曲执行：
+
+```text
+重试播放
+复制失败原因
+移除失败歌曲
+```
+
+### 播放事件日志
+
+进入：
+
+```text
+数据管理 -> 播放事件日志
+```
+
+可按以下类型筛选：
+
+```text
+播放成功
+播放失败
+跳过
+停止
+连续失败
+预取
+```
+
+支持导出：
+
+```text
+TXT
+JSON
+```
+
+### 播放后端健康检查
+
+进入：
+
+```text
+系统诊断 -> 全面诊断
+```
+
+可查看当前播放内核、QMediaPlayer、VLC 和失败治理配置状态。
 
 ### 自动检查更新
 
@@ -164,31 +235,14 @@ logs/error.log
 logs/last_crash_summary.txt
 ```
 
-### 浏览歌单分类
-
-1. 进入「歌单分类」页面。
-2. 页面会自动获取 `/playlist/catlist` 分类。
-3. 分类加载完成后会自动加载当前分类歌单。
-4. 可使用快捷分类按钮快速切换。
-5. 可在搜索框中筛选当前已加载歌单。
-6. 双击歌单加载歌曲。
-
-### 修复本地数据
-
-进入：
-
-```text
-数据管理 -> 修复本地数据
-```
-
 ## 发布与校验脚本
 
 ```bash
 python scripts/check_ui_integrity.py
 python scripts/check_config_defaults.py
 python scripts/check_page_construction.py
-python scripts/check_public_release_assets.py --repo chenmuting/LeQi --tag v1.0.23 --build 54
-python scripts/check_build_integrity.py --version 1.0.23
+python scripts/check_public_release_assets.py --repo chenmuting/LeQi --tag v1.0.24 --build 55
+python scripts/check_build_integrity.py --version 1.0.24
 ```
 
 ## 更新检查
