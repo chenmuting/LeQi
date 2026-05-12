@@ -1,26 +1,27 @@
 {
   "name": "乐栖",
   "english_name": "LeQi",
-  "version": "1.0.24",
-  "build": 55,
+  "version": "1.0.25",
+  "build": 56,
   "channel": "stable",
   "release_date": "2026-05-12",
   "release_page_url": "https://github.com/chenmuting/LeQi/releases",
-  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.24/LeQi-windows.zip",
+  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.25/LeQi-windows.zip",
   "assets": {
-    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.24/LeQi-windows.zip",
-    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.24/LeQiSetup-1.0.24.exe"
+    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.25/LeQi-windows.zip",
+    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.25/LeQiSetup-1.0.25.exe"
   },
   "changelog": [
-    "新增播放失败原因分类，记录无播放地址、API 空 URL、网络超时、后端加载失败、本地文件不存在等原因",
-    "播放事件日志增强，记录失败原因、失败阶段、队列位置、播放后端、歌曲和歌手信息",
-    "新增播放 URL 预取服务，当前歌曲播放后后台预取下一首在线歌曲 URL",
-    "播放失败后立即释放当前媒体资源，降低后端卡顿和占用风险",
-    "播放队列新增状态列，显示待播放、正在准备、正在播放、播放完成、已失败、已跳过、已停止等状态",
-    "播放队列失败歌曲支持重试播放、移除失败歌曲、复制失败原因",
-    "播放事件日志支持播放成功、播放失败、跳过、停止、连续失败、预取等筛选",
-    "播放事件日志支持 TXT / JSON 导出",
-    "系统诊断页新增播放后端健康检查",
-    "更新版本到 v1.0.24 build 55"
+    "新增首次启动欢迎页，提供搜索、歌单分类、设置等快速入口",
+    "新增全局快捷键说明，支持 F1 查看快捷键",
+    "首页优化为快捷仪表盘，增加发现、歌单分类、歌手、专辑、数据管理、检查更新等入口",
+    "设置页新增启动欢迎页开关",
+    "新增空状态组件，统一空列表说明样式",
+    "Toast 状态提示支持 info / success / warning / error 类型样式",
+    "修复安装包启动闪退风险：main.py 在导入应用模块前先归一化工作目录",
+    "修复安装包启动闪退风险：配置读取兼容安装目录与 _internal/config",
+    "修复安装包快捷方式工作目录，桌面/开始菜单/安装后启动均使用 {app} 作为 WorkingDir",
+    "更新安装包脚本仓库链接为公开仓库 chenmuting/LeQi",
+    "更新版本到 v1.0.25 build 56"
   ]
 }
