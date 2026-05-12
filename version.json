@@ -1,23 +1,25 @@
 {
   "name": "乐栖",
   "english_name": "LeQi",
-  "version": "1.0.20",
-  "build": 51,
+  "version": "1.0.21",
+  "build": 52,
   "channel": "stable",
   "release_date": "2026-05-12",
   "release_page_url": "https://github.com/chenmuting/LeQi/releases",
-  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.20/LeQi-windows.zip",
+  "download_url": "https://github.com/chenmuting/LeQi/releases/download/v1.0.21/LeQi-windows.zip",
   "assets": {
-    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.20/LeQi-windows.zip",
-    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.20/LeQiSetup-1.0.20.exe"
+    "zip": "https://github.com/chenmuting/LeQi/releases/download/v1.0.21/LeQi-windows.zip",
+    "exe": "https://github.com/chenmuting/LeQi/releases/download/v1.0.21/LeQiSetup-1.0.21.exe"
   },
   "changelog": [
-    "修复歌单分类页 _categories_loaded_once 属性缺失导致的未捕获异常",
-    "歌单分类页打开后自动加载 /playlist/catlist，并自动加载当前分类歌单",
-    "从发现页进入歌单分类时支持等待分类加载完成后再按目标分类加载歌单",
-    "优化歌单分类页表格列宽与最小宽高，避免歌单名、创建者、歌曲 ID 等列被挤压",
-    "优化通用歌曲模型表格固定列宽、最小高度和横向滚动，确保歌曲、歌手、专辑、时长、ID 可显示",
-    "API 能力检测将 /api/v2/artist/songs 作为可选兼容接口，不再计入必需接口失败",
-    "更新版本到 v1.0.20 build 51"
+    "新增统一表格列宽记忆，支持 QSettings 持久化保存列宽",
+    "核心表格支持右键复制单元格、复制整行、复制选中区域",
+    "歌单分类页新增当前已加载歌单搜索与快捷分类按钮",
+    "专辑页新增专辑封面显示",
+    "歌手页新增歌手专辑列表，双击专辑可打开专辑页",
+    "播放队列新增撤销排序与随机打乱",
+    "启动自检报告新增一键复制精简报告",
+    "数据管理页新增修复本地数据功能",
+    "更新版本到 v1.0.21 build 52"
   ]
 }
